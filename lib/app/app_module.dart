@@ -1,3 +1,5 @@
+import 'package:flutter_boilerplate/app/modules/user/user_module.dart';
+
 import 'widgets/main_drawer/main_drawer_controller.dart';
 import 'package:flutter_boilerplate/app/http/api/auth_repository.dart';
 import 'package:flutter_boilerplate/app/app_controller.dart';
@@ -23,6 +25,7 @@ class AppModule extends MainModule {
         Router('/login', module: LoginModule()),
         Router('/register', module: RegisterModule()),
         Router('/home', module: HomeModule()),
+        Router('/users', module: UserModule()),
       ];
 
   @override
