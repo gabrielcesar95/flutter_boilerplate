@@ -1,26 +1,34 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_boilerplate/app/exceptions/form_validation.dart';
 import 'package:flutter_boilerplate/app/http/api/client.dart';
+import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class UserRepository extends Api implements Disposable {
   String path = 'api/user';
+  List<UserModel> users = [];
 
-  Future list({Map formData}) async {
+  Future<List<UserModel>> list({Map formData}) async {
     try {
       final response = await client.get(path, queryParameters: formData);
 
-      return response.data;
+      for (var user in (response.data['data'] as List)) {
+        UserModel model = UserModel.fromMap(user);
+
+        users.add(model);
+      }
     } catch (e) {
-      if (e.response == null) {
-        throw Exception("Falha ao conectar");
-      }
+      if (e is DioError) {
+        if (e.response == null) {
+          throw Exception("Falha ao conectar");
+        }
 
-      if (e.response.statusCode == 422) {
-        throw FormValidationException(e.response.data);
+        if (e.response.statusCode == 422) {
+          throw FormValidationException(e.response.data);
+        }
       }
-
-      return e.response.toString();
     }
+    return users;
   }
 
   //dispose will be called automatically

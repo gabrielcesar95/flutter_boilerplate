@@ -9,39 +9,25 @@ part of 'user_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UserController on _UserControllerBase, Store {
-  final _$valueAtom = Atom(name: '_UserControllerBase.value');
+  final _$usersAtom = Atom(name: '_UserControllerBase.users');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ObservableFuture<List<UserModel>> get users {
+    _$usersAtom.reportRead();
+    return super.users;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set users(ObservableFuture<List<UserModel>> value) {
+    _$usersAtom.reportWrite(value, super.users, () {
+      super.users = value;
     });
-  }
-
-  final _$_UserControllerBaseActionController =
-      ActionController(name: '_UserControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_UserControllerBaseActionController.startAction(
-        name: '_UserControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_UserControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+users: ${users}
     ''';
   }
 }
