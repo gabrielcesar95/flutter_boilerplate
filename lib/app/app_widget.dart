@@ -11,21 +11,21 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Roboto',
         textTheme: TextTheme(
-          bodyText1: TextStyle(
-            color: Colors.white
-          ),
-          bodyText2: TextStyle(
-            color: Colors.white
-          ),
-          caption: TextStyle(
-            color: Colors.white
-          ),
+          bodyText1: TextStyle(color: Colors.white),
+          bodyText2: TextStyle(color: Colors.white),
+          caption: TextStyle(color: Colors.white),
         ),
         primaryColor: Colors.grey[700],
         inputDecorationTheme: InputDecorationTheme(
           fillColor: Colors.deepPurpleAccent[500],
         ),
         appBarTheme: AppBarTheme(
+          color: Colors.grey[800],
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey[800],
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
           color: Colors.grey[800],
         ),
         accentColor: Colors.deepPurpleAccent[900],

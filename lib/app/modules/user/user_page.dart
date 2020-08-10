@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -22,14 +23,6 @@ class _UserPageState extends ModularState<UserPage, UserController> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Usuários"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              print('new user');
-            },
-          )
-        ],
       ),
       body: Observer(builder: (BuildContext context) {
         if (userController.users.status == FutureStatus.pending) {
@@ -59,6 +52,20 @@ class _UserPageState extends ModularState<UserPage, UserController> {
           },
         );
       }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        mouseCursor: SystemMouseCursors.click,
+        onPressed: () {
+          Modular.link.pushNamed('/new');
+        },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Container(
+          height: 32,
+        ),
+      ),
     );
   }
 
