@@ -55,7 +55,6 @@ class _UserPageState extends ModularState<UserPage, UserController> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        mouseCursor: SystemMouseCursors.click,
         onPressed: () {
           Modular.link.pushNamed('/new');
         },
@@ -71,7 +70,7 @@ class _UserPageState extends ModularState<UserPage, UserController> {
 
   @override
   void dispose() {
-    users.clear();
+    this.users.clear();
     super.dispose();
   }
 }

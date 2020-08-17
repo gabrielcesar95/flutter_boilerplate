@@ -18,10 +18,6 @@ class _UserFormPageState
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,15 +45,30 @@ class _UserFormPageState
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                NameInputWidget(_nameController),
+                                NameInputWidget(this.controller.nameController),
                                 SizedBox(
                                   height: 8,
                                 ),
-                                EmailInputWidget(_emailController),
+                                EmailInputWidget(this.controller.emailController),
                                 SizedBox(
                                   height: 8,
                                 ),
-                                PasswordInputWidget(_passwordController),
+                                PasswordInputWidget(this.controller.passwordController),
+                                SwitchListTile.adaptive(
+                                  title: Text('Ativo'),
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                  value: this.controller.active,
+                                  onChanged: (bool newValue) {
+                                    this.controller.toggleActive();
+                                  },
+                                ),
+                                SwitchListTile.adaptive(
+                                  title: Text('E-mail Verificado'),
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                  value: this.controller.emailVerified,
+                                  onChanged: (bool newValue) {
+                                  },
+                                )
                               ],
                             ),
                           ),

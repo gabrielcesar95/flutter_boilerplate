@@ -24,6 +24,85 @@ mixin _$UserFormController on _UserFormControllerBase, Store {
     });
   }
 
+  final _$emailControllerAtom =
+      Atom(name: '_UserFormControllerBase.emailController');
+
+  @override
+  TextEditingController get emailController {
+    _$emailControllerAtom.reportRead();
+    return super.emailController;
+  }
+
+  @override
+  set emailController(TextEditingController value) {
+    _$emailControllerAtom.reportWrite(value, super.emailController, () {
+      super.emailController = value;
+    });
+  }
+
+  final _$passwordControllerAtom =
+      Atom(name: '_UserFormControllerBase.passwordController');
+
+  @override
+  TextEditingController get passwordController {
+    _$passwordControllerAtom.reportRead();
+    return super.passwordController;
+  }
+
+  @override
+  set passwordController(TextEditingController value) {
+    _$passwordControllerAtom.reportWrite(value, super.passwordController, () {
+      super.passwordController = value;
+    });
+  }
+
+  final _$nameControllerAtom =
+      Atom(name: '_UserFormControllerBase.nameController');
+
+  @override
+  TextEditingController get nameController {
+    _$nameControllerAtom.reportRead();
+    return super.nameController;
+  }
+
+  @override
+  set nameController(TextEditingController value) {
+    _$nameControllerAtom.reportWrite(value, super.nameController, () {
+      super.nameController = value;
+    });
+  }
+
+  final _$activeAtom = Atom(name: '_UserFormControllerBase.active');
+
+  @override
+  bool get active {
+    _$activeAtom.reportRead();
+    return super.active;
+  }
+
+  @override
+  set active(bool value) {
+    _$activeAtom.reportWrite(value, super.active, () {
+      super.active = value;
+    });
+  }
+
+  final _$emailVerifiedAtom =
+      Atom(name: '_UserFormControllerBase.emailVerified');
+
+  @override
+  bool get emailVerified {
+    _$emailVerifiedAtom.reportRead();
+    return super.emailVerified;
+  }
+
+  @override
+  set emailVerified(bool value) {
+    _$emailVerifiedAtom.reportWrite(value, super.emailVerified, () {
+      super.emailVerified = value;
+    });
+  }
+
   final _$_UserFormControllerBaseActionController =
       ActionController(name: '_UserFormControllerBase');
 
@@ -39,9 +118,25 @@ mixin _$UserFormController on _UserFormControllerBase, Store {
   }
 
   @override
+  void toggleActive() {
+    final _$actionInfo = _$_UserFormControllerBaseActionController.startAction(
+        name: '_UserFormControllerBase.toggleActive');
+    try {
+      return super.toggleActive();
+    } finally {
+      _$_UserFormControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-loading: ${loading}
+loading: ${loading},
+emailController: ${emailController},
+passwordController: ${passwordController},
+nameController: ${nameController},
+active: ${active},
+emailVerified: ${emailVerified}
     ''';
   }
 }
