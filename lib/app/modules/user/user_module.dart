@@ -16,10 +16,10 @@ class UserModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => UserPage()),
-        Router('/new', child: (_, args) => UserFormPage()),
-        Router('/edit/:id', child: (_, args) => UserFormPage(id: args.params['id'])),
+  List<ModularRouter> get routers => [
+        ModularRouter(Modular.initialRoute, child: (_, args) => UserPage()),
+        ModularRouter('/new', child: (_, args) => UserFormPage()),
+        ModularRouter('/edit/:id', child: (_, args) => UserFormPage(id: args.params['id'])),
       ];
 
   static Inject get to => Inject<UserModule>.of();
