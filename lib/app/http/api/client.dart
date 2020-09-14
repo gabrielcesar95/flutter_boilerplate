@@ -18,7 +18,7 @@ abstract class Api {
     connectTimeout: 8000,
     receiveTimeout: 5000,
     headers: {
-      'Accept': 'application/json',
+      'accept': 'application/json',
     },
   );
 
@@ -30,7 +30,8 @@ abstract class Api {
         String token = await this._token;
 
         if (token != null && !options.headers.containsKey('Authorization')) {
-          options.headers = {'Authorization': 'Bearer ${await getAccessToken()}'};
+          options.headers
+              .addAll({'authorization': 'Bearer ${await getAccessToken()}'});
         }
 
         return options;

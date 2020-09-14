@@ -20,6 +20,7 @@ class UserRepository extends Api implements Disposable {
     } catch (e) {
       if (e is DioError) {
         if (e.response == null) {
+          // TODO: Exibir toast de erro quando houver falha
           throw Exception("Falha ao conectar");
         }
 

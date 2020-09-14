@@ -36,10 +36,7 @@ abstract class _UserFormControllerBase with Store {
   }
 
   createUser(Map<String, dynamic> formData) async {
-    print(formData.toString());
-
     UserModel user = await this.repository.create(formData);
 
-    print(user.toString());
   }
 }
