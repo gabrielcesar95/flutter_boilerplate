@@ -16,7 +16,7 @@ class _EmailInputWidgetState extends State<EmailInputWidget> {
       controller: widget.controller,
       validator: (val) {
         if (val.isEmpty) {
-          return 'Insira seu e-mail';
+          return 'Insira o e-mail';
         }
         if (!isEmail(val)) {
           return 'E-mail inválido';

@@ -12,6 +12,9 @@ abstract class Api {
 
   BaseOptions options = BaseOptions(
     baseUrl: DotEnv().env['APP_URL'],
+    responseType: ResponseType.json,
+    contentType: 'application/json',
+    followRedirects: true,
     connectTimeout: 8000,
     receiveTimeout: 5000,
     headers: {

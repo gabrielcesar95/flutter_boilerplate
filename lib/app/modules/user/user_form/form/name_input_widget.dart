@@ -15,7 +15,7 @@ class _NameInputWidgetState extends State<NameInputWidget> {
       controller: widget.controller,
       validator: (val) {
         if (val.isEmpty) {
-          return 'Insira seu nome completo';
+          return 'Insira o nome completo';
         }
         return null;
       },

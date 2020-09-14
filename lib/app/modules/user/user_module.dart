@@ -10,7 +10,7 @@ import 'user_page.dart';
 class UserModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => UserFormController()),
+        Bind((i) => UserFormController(i.get())),
         Bind((i) => UserController(i.get())),
         Bind((i) => UserRepository()),
       ];

@@ -9,18 +9,21 @@ class UserModel {
   DateTime get updatedAt => updatedAt;
 
   set emailVerifiedAt(datetime) {
+    this.emailVerifiedAt = null;
     if (datetime is String) {
       this.emailVerifiedAt = DateTime.tryParse(datetime);
     }
   }
 
   set createdAt(datetime) {
+    this.createdAt = null;
     if (datetime is String) {
       this.createdAt = DateTime.tryParse(datetime);
     }
   }
 
   set updatedAt(datetime) {
+    this.updatedAt = null;
     if (datetime is String) {
       this.updatedAt = DateTime.tryParse(datetime);
     }

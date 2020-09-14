@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:flutter_boilerplate/app/modules/auth/login/form/email_input_widget.dart';
 import 'package:flutter_boilerplate/app/modules/user/user_form/form/name_input_widget.dart';
 import 'package:flutter_boilerplate/app/modules/user/user_form/form/password_input_widget.dart';
@@ -27,77 +28,83 @@ class _UserFormPageState
       ),
       key: _scaffoldKey,
       body: SafeArea(
-        child: Column(children: [
-          Observer(
-            builder: (_) => this.controller.loading == true
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                NameInputWidget(this.controller.nameController),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                EmailInputWidget(this.controller.emailController),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                PasswordInputWidget(this.controller.passwordController),
-                                SwitchListTile.adaptive(
-                                  title: Text('Ativo'),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                                  value: this.controller.active,
-                                  onChanged: (bool newValue) {
-                                    this.controller.toggleActive();
-                                  },
-                                ),
-                                SwitchListTile.adaptive(
-                                  title: Text('E-mail Verificado'),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                                  value: this.controller.emailVerified,
-                                  onChanged: (bool newValue) {
-                                  },
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          //Create Account / Social Login
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
+        child: Observer(
+          builder: (_) => this.controller.loading == true
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              NameInputWidget(this.controller.nameController),
                               SizedBox(
                                 height: 8,
                               ),
-                              RaisedButton(
-                                onPressed: () async {
-                                  if (_formKey.currentState.validate()) {
-                                    print('validado');
-                                  }
-                                },
-                                child: Text('Salvar'),
+                              EmailInputWidget(this.controller.emailController),
+                              SizedBox(
+                                height: 8,
                               ),
+                              PasswordInputWidget(this.controller.passwordController),
+                              SwitchListTile.adaptive(
+                                title: Text('Ativo'),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                value: this.controller.active,
+                                onChanged: (bool newValue) {
+                                  this.controller.toggleActive();
+                                },
+                              ),
+                              // TODO: Exibir apenas se existir model de user
+                              SwitchListTile.adaptive(
+                                title: Text('E-mail Verificado'),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                value: this.controller.emailVerified,
+                                onChanged: (bool newValue) {
+                                },
+                              )
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        //Create Account / Social Login
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            SizedBox(
+                              height: 8,
+                            ),
+                            RaisedButton(
+                              onPressed: () async {
+                                if (_formKey.currentState.validate()) {
+                                  Map<String, dynamic> formData = {
+                                    'name': this.controller.nameController.text,
+                                    'email': this.controller.emailController.text,
+                                    'password': this.controller.passwordController.text,
+                                    'active': this.controller.active
+                                  };
+
+                                  this.controller.createUser(formData);
+                                }
+                              },
+                              child: Text('Salvar'),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-          ),
-        ]),
+                ),
+        ),
       ),
     );
   }

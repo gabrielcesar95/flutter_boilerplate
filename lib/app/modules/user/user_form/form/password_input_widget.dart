@@ -16,7 +16,7 @@ class _PasswordInputWidgetState extends State<PasswordInputWidget> {
       obscureText: true,
       validator: (val) {
         if (val.isEmpty) {
-          return 'Insira sua senha';
+          return 'Insira a senha';
         }
         if (val.length < 8) {
           return 'A senha deve conter pelo menos 8 dígitos';
