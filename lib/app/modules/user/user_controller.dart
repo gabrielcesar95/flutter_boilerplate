@@ -12,9 +12,8 @@ abstract class _UserControllerBase with Store {
   @observable
   ObservableFuture<List<UserModel>> users;
 
-
   _UserControllerBase(this.repository){
-    this.users = repository.list().asObservable();
+    users = repository.list().asObservable();
   }
   
 }

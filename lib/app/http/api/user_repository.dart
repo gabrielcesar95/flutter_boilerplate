@@ -5,6 +5,7 @@ import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class UserRepository extends Api implements Disposable {
+  @override
   String path = 'api/user/';
   List<UserModel> users = [];
 
@@ -21,7 +22,7 @@ class UserRepository extends Api implements Disposable {
       if (e is DioError) {
         if (e.response == null) {
           // TODO: Exibir toast de erro quando houver falha
-          throw Exception("Falha ao conectar");
+          throw Exception('Falha ao conectar');
         }
 
         if (e.response.statusCode == 422) {
@@ -42,7 +43,7 @@ class UserRepository extends Api implements Disposable {
     } catch (e) {
       if (e is DioError) {
         if (e.response == null) {
-          throw Exception("Falha ao conectar");
+          throw Exception('Falha ao conectar');
         }
 
         if (e.response.statusCode == 422) {
@@ -50,6 +51,7 @@ class UserRepository extends Api implements Disposable {
         }
       }
     }
+    
     return user;
   }
 

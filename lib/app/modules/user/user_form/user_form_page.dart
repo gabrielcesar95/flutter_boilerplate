@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:flutter_boilerplate/app/modules/auth/login/form/email_input_widget.dart';
 import 'package:flutter_boilerplate/app/modules/user/user_form/form/name_input_widget.dart';
 import 'package:flutter_boilerplate/app/modules/user/user_form/form/password_input_widget.dart';
@@ -24,12 +23,12 @@ class _UserFormPageState
     return Scaffold(
       appBar: AppBar(
         // TODO: Se existir model de user, substituir para "Editar usuário"
-        title: Text("Novo Usuário"),
+        title: Text('Novo Usuário'),
       ),
       key: _scaffoldKey,
       body: SafeArea(
         child: Observer(
-          builder: (_) => this.controller.loading == true
+          builder: (_) => controller.pageLoading == true
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -53,10 +52,12 @@ class _UserFormPageState
                               SizedBox(
                                 height: 8,
                               ),
-                              PasswordInputWidget(this.controller.passwordController),
+                              PasswordInputWidget(
+                                  this.controller.passwordController),
                               SwitchListTile.adaptive(
                                 title: Text('Ativo'),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 8),
                                 value: this.controller.active,
                                 onChanged: (bool newValue) {
                                   this.controller.toggleActive();
@@ -65,10 +66,10 @@ class _UserFormPageState
                               // TODO: Exibir apenas se existir model de user
                               SwitchListTile.adaptive(
                                 title: Text('E-mail Verificado'),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 8),
                                 value: this.controller.emailVerified,
-                                onChanged: (bool newValue) {
-                                },
+                                onChanged: (bool newValue) {},
                               )
                             ],
                           ),
@@ -87,13 +88,22 @@ class _UserFormPageState
                               onPressed: () async {
                                 if (_formKey.currentState.validate()) {
                                   Map<String, dynamic> formData = {
-                                    'name': this.controller.nameController.text,
-                                    'email': this.controller.emailController.text,
-                                    'password': this.controller.passwordController.text,
-                                    'active': this.controller.active
+                                    'name': controller.nameController.text,
+                                    'email': controller.emailController.text,
+                                    'password':
+                                        controller.passwordController.text,
+                                    'active': controller.active
                                   };
 
-                                  this.controller.createUser(formData);
+                                  final createAttempt =
+                                      await controller.attemptCreate(formData);
+
+                                  if (createAttempt is List<SnackBar>) {
+                                    createAttempt.forEach((error) {
+                                      _scaffoldKey.currentState
+                                          .showSnackBar(error);
+                                    });
+                                  }
                                 }
                               },
                               child: Text('Salvar'),

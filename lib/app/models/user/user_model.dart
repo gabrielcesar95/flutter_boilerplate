@@ -4,41 +4,38 @@ class UserModel {
   String email;
   String avatar;
   bool active;
-  DateTime get emailVerifiedAt => emailVerifiedAt;
-  DateTime get createdAt => createdAt;
-  DateTime get updatedAt => updatedAt;
+  DateTime emailVerifiedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
-  set emailVerifiedAt(datetime) {
-    this.emailVerifiedAt = null;
-    if (datetime is String) {
-      this.emailVerifiedAt = DateTime.tryParse(datetime);
+  set email_verified_at(String dateTime) {
+    if (dateTime is String) {
+      emailVerifiedAt = DateTime.tryParse(dateTime);
     }
   }
 
-  set createdAt(datetime) {
-    this.createdAt = null;
-    if (datetime is String) {
-      this.createdAt = DateTime.tryParse(datetime);
+  set created_at(String dateTime) {
+    if (dateTime is String) {
+      createdAt = DateTime.tryParse(dateTime);
     }
   }
 
-  set updatedAt(datetime) {
-    this.updatedAt = null;
-    if (datetime is String) {
-      this.updatedAt = DateTime.tryParse(datetime);
+  set updated_at(String dateTime) {
+    if (dateTime is String) {
+      updatedAt = DateTime.tryParse(dateTime);
     }
   }
 
   UserModel(this.id, this.name);
 
   UserModel.fromMap(Map user) {
-    this.id = user['id'];
-    this.name = user['name'];
-    this.email = user['email'];
-    this.avatar = user['avatar'];
-    this.active = user['active'];
-    this.emailVerifiedAt = user['email_verified_at'];
-    this.createdAt = user['created_at'];
-    this.updatedAt = user['updated_at'];
+    id = user['id'];
+    name = user['name'];
+    email = user['email'];
+    avatar = user['avatar'];
+    active = user['active'];
+    email_verified_at = user['email_verified_at'];
+    created_at = user['created_at'];
+    updated_at = user['updated_at'];
   }
 }
