@@ -9,36 +9,44 @@ part 'register_controller.g.dart';
 
 class RegisterController = _RegisterControllerBase with _$RegisterController;
 
-abstract class _RegisterControllerBase with Store {  
+abstract class _RegisterControllerBase with Store {
   final OauthService _oauthService = Modular.get<OauthService>();
   final AuthRepository _repo = Modular.get<AuthRepository>();
-  
+
   @observable
   bool loading = false;
 
   @action
   void toggleLoading() {
-    this.loading = !this.loading;
+    loading = !loading;
   }
 
-  attemptRegister(String name, String email, String password) async {
+  //TODO: Revalidar cadastro
+
+  Future<List<SnackBar>> attemptRegister(
+      String name, String email, String password) async {
     try {
-      await _repo.register({'name': name, 'email': email, 'password': password});
+      await _repo
+          .register({'name': name, 'email': email, 'password': password});
 
       await _oauthService.setClient(email, password);
 
-      Modular.to.pushReplacementNamed('/home');
-      return;
-    } on FormValidationException catch (e) {
-      
-      List<SnackBar> snackMessages = [];
-      e.errors.forEach((field, errors){
-        errors.forEach((error){
-          snackMessages.add(SnackBar(content: Text(error),));
+      await Modular.to.pushReplacementNamed('/home');
+      return [];
+    } catch (e) {
+      if (e is FormValidationException) {
+        List<SnackBar> snackMessages = [];
+        e.errors.forEach((field, errors) {
+          errors.forEach((error) {
+            snackMessages.add(SnackBar(
+              content: Text(error),
+            ));
+          });
         });
-      });
-      
-      return snackMessages;
+
+        return snackMessages;
+      }
     }
+    return [];
   }
 }
