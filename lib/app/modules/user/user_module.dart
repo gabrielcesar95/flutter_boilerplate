@@ -1,17 +1,17 @@
-import 'package:flutter_boilerplate/app/modules/user/user_form/user_form_page.dart';
+import 'package:flutter_boilerplate/app/modules/user/form/user_form_controller.dart';
+import 'package:flutter_boilerplate/app/modules/user/form/user_form_page.dart';
+import 'package:flutter_boilerplate/app/modules/user/list/users_controller.dart';
 
-import 'user_form/user_form_controller.dart';
 import 'package:flutter_boilerplate/app/http/api/user_repository.dart';
 
-import 'user_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'user_page.dart';
+import 'list/users_page.dart';
 
 class UserModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => UserFormController(i.get())),
-        Bind((i) => UserController(i.get())),
+        Bind((i) => UsersController(i.get())),
         Bind((i) => UserRepository()),
       ];
 

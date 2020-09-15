@@ -13,7 +13,7 @@ class MenuWidget extends StatelessWidget {
     return Flexible(
       child: GridView.count(
         crossAxisCount: 3,
-        children: this._buttons,
+        children: _buttons,
       ),
     );
   }

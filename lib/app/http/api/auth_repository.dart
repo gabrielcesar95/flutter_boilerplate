@@ -12,7 +12,7 @@ class AuthRepository extends Api implements Disposable {
     } catch (e) {
 
       if(e.response == null){
-        throw Exception("Falha ao conectar");
+        throw Exception('Falha ao conectar');
       }
 
       if(e.response.statusCode == 422){

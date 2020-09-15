@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_boilerplate/app/models/user/user_model.dart';
+import 'package:flutter_boilerplate/app/modules/user/list/users_controller.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'user_controller.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key key}) : super(key: key);
@@ -13,8 +13,8 @@ class UserPage extends StatefulWidget {
   _UserPageState createState() => _UserPageState();
 }
 
-class _UserPageState extends ModularState<UserPage, UserController> {
-  final userController = Modular.get<UserController>();
+class _UserPageState extends ModularState<UserPage, UsersController> {
+  final userController = Modular.get<UsersController>();
 
   List<UserModel> users;
 
@@ -70,7 +70,9 @@ class _UserPageState extends ModularState<UserPage, UserController> {
 
   @override
   void dispose() {
-    this.users.clear();
+    if(users != null && users.isNotEmpty){
+      users.clear();
+    }
     super.dispose();
   }
 }

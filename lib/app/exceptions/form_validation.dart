@@ -3,7 +3,7 @@ class FormValidationException implements Exception {
 
   FormValidationException(dynamic responseData) {
     if (responseData['errors'] != null) {
-      this.errors = responseData['errors'];
+      errors = responseData['errors'];
     }
   }
 }

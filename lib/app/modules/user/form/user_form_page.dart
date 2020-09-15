@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app/modules/auth/login/form/email_input_widget.dart';
-import 'package:flutter_boilerplate/app/modules/user/user_form/form/name_input_widget.dart';
-import 'package:flutter_boilerplate/app/modules/user/user_form/form/password_input_widget.dart';
+import 'package:flutter_boilerplate/app/modules/user/form/inputs/name_input_widget.dart';
+import 'package:flutter_boilerplate/app/modules/user/form/inputs/password_input_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'user_form_controller.dart';
@@ -44,23 +44,23 @@ class _UserFormPageState
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              NameInputWidget(this.controller.nameController),
+                              NameInputWidget(controller.nameController),
                               SizedBox(
                                 height: 8,
                               ),
-                              EmailInputWidget(this.controller.emailController),
+                              EmailInputWidget(controller.emailController),
                               SizedBox(
                                 height: 8,
                               ),
                               PasswordInputWidget(
-                                  this.controller.passwordController),
+                                  controller.passwordController),
                               SwitchListTile.adaptive(
                                 title: Text('Ativo'),
                                 contentPadding:
                                     EdgeInsets.symmetric(horizontal: 8),
-                                value: this.controller.active,
+                                value: controller.active,
                                 onChanged: (bool newValue) {
-                                  this.controller.toggleActive();
+                                  controller.toggleActive();
                                 },
                               ),
                               // TODO: Exibir apenas se existir model de user
@@ -68,7 +68,7 @@ class _UserFormPageState
                                 title: Text('E-mail Verificado'),
                                 contentPadding:
                                     EdgeInsets.symmetric(horizontal: 8),
-                                value: this.controller.emailVerified,
+                                value: controller.emailVerified,
                                 onChanged: (bool newValue) {},
                               )
                             ],

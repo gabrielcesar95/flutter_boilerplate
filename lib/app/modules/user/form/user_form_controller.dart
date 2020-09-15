@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app/exceptions/form_validation.dart';
 import 'package:flutter_boilerplate/app/http/api/user_repository.dart';
-import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -48,8 +47,8 @@ abstract class _UserFormControllerBase with Store {
 
     try {
       await repository.create(formData);
-
-      await Modular.to.pushReplacementNamed('/users');
+      
+      await Modular.to.pushReplacementNamed('/users'); // TODO: Corrigir rota
     } catch (e) {
       if (e is FormValidationException) {
         List<SnackBar> snackMessages = [];

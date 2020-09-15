@@ -2,9 +2,9 @@ import 'package:flutter_boilerplate/app/http/api/user_repository.dart';
 import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:mobx/mobx.dart';
 
-part 'user_controller.g.dart';
+part 'users_controller.g.dart';
 
-class UserController = _UserControllerBase with _$UserController;
+class UsersController = _UserControllerBase with _$UsersController;
 
 abstract class _UserControllerBase with Store {
   final UserRepository repository;  

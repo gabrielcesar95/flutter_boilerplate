@@ -23,11 +23,11 @@ abstract class Api {
   );
 
   Api() {
-    client = new Dio(options);
+    client = Dio(options);
 
     client.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options) async {
-        String token = await this._token;
+        String token = await _token;
 
         if (token != null && !options.headers.containsKey('Authorization')) {
           options.headers
@@ -39,8 +39,8 @@ abstract class Api {
     ));
   }
 
-  getAccessToken() async {
-    Map credentials = jsonDecode(await this._token);
+  Future<String> getAccessToken() async {
+    Map credentials = jsonDecode(await _token);
 
     return credentials['accessToken'];
   }
