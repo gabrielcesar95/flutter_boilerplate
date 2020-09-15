@@ -8,7 +8,7 @@ abstract class Api {
   Dio client;
   String path;
 
-  Future<String> _token = OauthService().getMobileToken();
+  final Future<String> _token = OauthService().getMobileToken();
 
   BaseOptions options = BaseOptions(
     baseUrl: DotEnv().env['APP_URL'],

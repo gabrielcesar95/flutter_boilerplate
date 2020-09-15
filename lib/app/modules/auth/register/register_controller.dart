@@ -21,8 +21,6 @@ abstract class _RegisterControllerBase with Store {
     pageLoading = !pageLoading;
   }
 
-  //TODO: Revalidar cadastro
-
   Future<List<SnackBar>> attemptRegister(
       String name, String email, String password) async {
     toggleLoading();

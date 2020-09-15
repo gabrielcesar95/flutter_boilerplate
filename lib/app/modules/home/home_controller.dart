@@ -10,13 +10,13 @@ abstract class _HomeBase with Store {
   
   final _oauthService = OauthService();
 
-  attemptLogout() async {
+  void attemptLogout() async {
     try {
       await _oauthService.logout();
     } catch (error) {
       print(error.toString());
     }
 
-    Modular.to.pushReplacementNamed('/login');
+    await Modular.to.pushReplacementNamed('/login');
   }
 }

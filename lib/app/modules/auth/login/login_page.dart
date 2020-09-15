@@ -16,8 +16,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       key: _scaffoldKey,
       body: SafeArea(
         child: Observer(
-          builder: (_) => this.controller.loading == true
+          builder: (_) => controller.loading == true
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -60,7 +60,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                   RaisedButton(
                                     onPressed: () async {
                                       if (_formKey.currentState.validate()) {
-                                        this.controller.toggleLoading();
+                                        controller.toggleLoading();
                                         final loginAttempt =
                                             await Modular.get<LoginController>()
                                                 .attemptLogin(
@@ -74,7 +74,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                           });
                                         }
 
-                                        this.controller.toggleLoading();
+                                        controller.toggleLoading();
                                       }
                                     },
                                     child: Text('Login'),

@@ -6,9 +6,9 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 class OauthService {
   static final OauthService _singleton = OauthService._internal();
 
-  Future<Box> _box = Hive.openBox('oauth');
+  final Future<Box> _box = Hive.openBox('oauth');
   static final String _url = DotEnv().env['APP_URL'];
-  static final String _endpoint = "oauth/token";
+  static final String _endpoint = 'oauth/token';
   static final String _clientId = DotEnv().env['APP_CLIENT_ID'];
   static final String _clientSecret = DotEnv().env['APP_CLIENT_SECRET'];
 
@@ -53,15 +53,15 @@ class OauthService {
       await _setMobileToken(client.credentials);
     } catch (e) {
       Map responseData = {
-        "errors": {
-          "auth": ["Falha no login"]
+        'errors': {
+          'auth': ['Falha no login']
         }
       };
 
       if (e is oauth2.AuthorizationException) {
         responseData = {
-          "errors": {
-            "auth": ["Usuário/senha incorretos"]
+          'errors': {
+            'auth': ['Usuário/senha incorretos']
           }
         };
       }
@@ -88,7 +88,7 @@ class OauthService {
   Future<void> logout() async {
     if (await ensureLoggedIn()) {
       final Box box = await _box;
-      box.delete('token');
+      await box.delete('token');
     }
   }
 }

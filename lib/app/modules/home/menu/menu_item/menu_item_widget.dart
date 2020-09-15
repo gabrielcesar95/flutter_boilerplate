@@ -14,20 +14,20 @@ class MenuItemWidget extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: InkWell(
           onTap: () {
-            Navigator.pushNamed(context, this._router);
+            Navigator.pushNamed(context, _router);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Icon(
-                this._icon,
+                _icon,
                 size: 40,
-                semanticLabel: this._text,
+                semanticLabel: _text,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
-                  this._text,
+                  _text,
                   textAlign: TextAlign.center,
                   
                 ),

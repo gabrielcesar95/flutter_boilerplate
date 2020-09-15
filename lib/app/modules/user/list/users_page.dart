@@ -22,7 +22,7 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Usuários"),
+        title: Text('Usuários'),
       ),
       body: Observer(builder: (BuildContext context) {
         if (userController.users.status == FutureStatus.pending) {
@@ -33,13 +33,13 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
 
         if (userController.users.value == []) {
           return Center(
-            child: Text("Nenhum usuário encontrado"),
+            child: Text('Nenhum usuário encontrado'),
           );
         }
 
         if (userController.users.error != null) {
           return Center(
-            child: Text("Erro ao obter usuários"),
+            child: Text('Erro ao obter usuários'),
           );
         }
 
@@ -93,7 +93,7 @@ class ListItem extends StatelessWidget {
         trailing: InkWell(
           child: Icon(Icons.edit),
           onTap: () {
-            print("edit");
+            print('edit');
           },
         ),
         onTap: () async {
