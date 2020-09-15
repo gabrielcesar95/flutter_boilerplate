@@ -28,7 +28,7 @@ class _RegisterPageState
       key: _scaffoldKey,
       body: SafeArea(
         child: Observer(
-          builder: (_) => controller.loading == true
+          builder: (_) => controller.pageLoading == true
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -77,7 +77,6 @@ class _RegisterPageState
                             RaisedButton(
                               onPressed: () async {
                                 if (_formKey.currentState.validate()) {
-                                  controller.toggleLoading();
                                   final registerAttempt =
                                       await controller.attemptRegister(
                                     _nameController.text,
@@ -91,7 +90,6 @@ class _RegisterPageState
                                           .showSnackBar(error);
                                     });
                                   }
-                                  controller.toggleLoading();
                                 }
                               },
                               child: Text('Cadastrar'),

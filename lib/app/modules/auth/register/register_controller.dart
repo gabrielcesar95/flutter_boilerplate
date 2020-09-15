@@ -14,17 +14,18 @@ abstract class _RegisterControllerBase with Store {
   final AuthRepository _repo = Modular.get<AuthRepository>();
 
   @observable
-  bool loading = false;
+  bool pageLoading = false;
 
   @action
   void toggleLoading() {
-    loading = !loading;
+    pageLoading = !pageLoading;
   }
 
   //TODO: Revalidar cadastro
 
   Future<List<SnackBar>> attemptRegister(
       String name, String email, String password) async {
+    toggleLoading();
     try {
       await _repo
           .register({'name': name, 'email': email, 'password': password});
@@ -36,6 +37,7 @@ abstract class _RegisterControllerBase with Store {
     } catch (e) {
       if (e is FormValidationException) {
         List<SnackBar> snackMessages = [];
+
         e.errors.forEach((field, errors) {
           errors.forEach((error) {
             snackMessages.add(SnackBar(
@@ -43,10 +45,11 @@ abstract class _RegisterControllerBase with Store {
             ));
           });
         });
-
+        toggleLoading();
         return snackMessages;
       }
     }
+    toggleLoading();
     return [];
   }
 }
