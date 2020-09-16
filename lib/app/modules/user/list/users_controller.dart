@@ -7,13 +7,27 @@ part 'users_controller.g.dart';
 class UsersController = _UserControllerBase with _$UsersController;
 
 abstract class _UserControllerBase with Store {
-  final UserRepository repository;  
-  
+  final UserRepository repository;
+  _UserControllerBase(this.repository);
+
+  // Animations
+  @observable
+  bool pageLoading = false;
+
   @observable
   ObservableFuture<List<UserModel>> users;
 
-  _UserControllerBase(this.repository){
-    users = repository.list().asObservable();
+  @action
+  void toggleLoading() {
+    pageLoading = !pageLoading;
   }
-  
+
+  @action
+  Future<void> fetchUsers() async {
+    toggleLoading();
+
+    users = ObservableFuture.value(await repository.list());
+
+    toggleLoading();
+  }
 }

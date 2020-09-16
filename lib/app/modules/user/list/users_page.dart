@@ -14,9 +14,27 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends ModularState<UserPage, UsersController> {
-  final userController = Modular.get<UsersController>();
+  List<UserModel> users = [];
 
-  List<UserModel> users;
+  ScrollController _scrollController;
+
+  @override
+  void initState() {
+    controller.fetchUsers();
+
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      final maxPosition = _scrollController.position.maxScrollExtent;
+      final currentPosition = _scrollController.position.pixels;
+      final positionToLoadMore = maxPosition - 200;
+
+      if (currentPosition >= positionToLoadMore && !controller.pageLoading) {
+        controller.fetchUsers();
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +43,49 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
         title: Text('Usuários'),
       ),
       body: Observer(builder: (BuildContext context) {
-        if (userController.users.status == FutureStatus.pending) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        if (userController.users.value == []) {
-          return Center(
-            child: Text('Nenhum usuário encontrado'),
-          );
-        }
-
-        if (userController.users.error != null) {
-          return Center(
-            child: Text('Erro ao obter usuários'),
-          );
-        }
-
-        users = userController.users.value;
+        final lenghtItems = controller.users?.result?.length ?? 0;
+        final isLoading = controller.pageLoading;
 
         return ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (context, index) {
+          controller: _scrollController,
+          itemCount: lenghtItems + (isLoading ? 1 : 0),
+          itemBuilder: (_, index) {
+            final isIndexForLoadingWidget = lenghtItems == index;
+
+            print(users.toString());
+
+            if (controller.users?.status != FutureStatus.fulfilled) {
+              return Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else {
+              users = controller.users.value;
+            }
+
+            if (users.isEmpty) {
+              return Center(
+                child: Text('Nenhum usuário encontrado'),
+              );
+            }
+
+            if (controller.users.error != null) {
+              return Center(
+                child: Text('Erro ao obter usuários'),
+              );
+            }
+
+            if (isIndexForLoadingWidget) {
+              return Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+
             return ListItem(users[index]);
           },
         );
@@ -70,7 +108,7 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
 
   @override
   void dispose() {
-    if(users != null && users.isNotEmpty){
+    if (users != null && users.isNotEmpty) {
       users.clear();
     }
     super.dispose();
