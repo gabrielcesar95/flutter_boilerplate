@@ -14,6 +14,9 @@ abstract class _UserControllerBase with Store {
   @observable
   bool pageLoading = false;
 
+  // Data
+  @observable
+  int currentPage = 1;
   @observable
   ObservableFuture<List<UserModel>> users;
 
@@ -25,8 +28,9 @@ abstract class _UserControllerBase with Store {
   @action
   Future<void> fetchUsers() async {
     toggleLoading();
+    users = ObservableFuture.value(await repository.list(page: currentPage));
 
-    users = ObservableFuture.value(await repository.list());
+    currentPage++;
 
     toggleLoading();
   }

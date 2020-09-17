@@ -24,6 +24,21 @@ mixin _$UsersController on _UserControllerBase, Store {
     });
   }
 
+  final _$currentPageAtom = Atom(name: '_UserControllerBase.currentPage');
+
+  @override
+  int get currentPage {
+    _$currentPageAtom.reportRead();
+    return super.currentPage;
+  }
+
+  @override
+  set currentPage(int value) {
+    _$currentPageAtom.reportWrite(value, super.currentPage, () {
+      super.currentPage = value;
+    });
+  }
+
   final _$usersAtom = Atom(name: '_UserControllerBase.users');
 
   @override
@@ -64,6 +79,7 @@ mixin _$UsersController on _UserControllerBase, Store {
   String toString() {
     return '''
 pageLoading: ${pageLoading},
+currentPage: ${currentPage},
 users: ${users}
     ''';
   }

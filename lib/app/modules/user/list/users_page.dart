@@ -27,7 +27,6 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
       final maxPosition = _scrollController.position.maxScrollExtent;
       final currentPosition = _scrollController.position.pixels;
       final positionToLoadMore = maxPosition - 200;
-
       if (currentPosition >= positionToLoadMore && !controller.pageLoading) {
         controller.fetchUsers();
       }
@@ -51,8 +50,6 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
           itemCount: lenghtItems + (isLoading ? 1 : 0),
           itemBuilder: (_, index) {
             final isIndexForLoadingWidget = lenghtItems == index;
-
-            print(users.toString());
 
             if (controller.users?.status != FutureStatus.fulfilled) {
               return Center(

@@ -9,9 +9,14 @@ class UserRepository extends Api implements Disposable {
   String path = 'api/user/';
   List<UserModel> users = [];
 
-  Future<List<UserModel>> list({Map formData}) async {
+  Future<List<UserModel>> list({int page = 1, Map formData}) async {
     try {
-      final response = await client.get(path, queryParameters: formData);
+
+      final Map<String, dynamic> query = {
+        'page': page,
+        ...?formData,
+      };
+      final response = await client.get(path, queryParameters: query);
 
       for (var user in (response.data['data'] as List)) {
         UserModel model = UserModel.fromMap(user);
@@ -51,7 +56,7 @@ class UserRepository extends Api implements Disposable {
         }
       }
     }
-    
+
     return user;
   }
 
