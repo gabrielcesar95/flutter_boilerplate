@@ -132,7 +132,7 @@ class ListItem extends StatelessWidget {
           },
         ),
         onTap: () async {
-          print('view');
+          await Modular.to.pushReplacementNamed('/users/${item.id}');
         },
       );
 }

@@ -2,20 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app/exceptions/form_validation.dart';
 import 'package:flutter_boilerplate/app/http/api/user_repository.dart';
+import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-part 'user_form_controller.g.dart';
+part 'user_view_controller.g.dart';
 
-class UserFormController = _UserFormControllerBase with _$UserFormController;
+class UserViewController = _UserViewControllerBase with _$UserViewController;
 
-abstract class _UserFormControllerBase with Store {
+abstract class _UserViewControllerBase with Store {
   final UserRepository repository;
-  _UserFormControllerBase(this.repository);
+  _UserViewControllerBase(this.repository);
 
   // Animations
   @observable
-  bool pageLoading = false;
+  bool pageLoading = true;
 
   // Form Controllers
   @observable
@@ -30,42 +31,27 @@ abstract class _UserFormControllerBase with Store {
   bool emailVerified = false;
 
   // User
-  // TODO: Adicionar model de usuário
+  UserModel user;
 
   @action
   void toggleLoading() {
     pageLoading = !pageLoading;
   }
 
+  // TODO: Remover
   @action
   void toggleActive() {
     active = !active;
   }
 
-  Future<List<SnackBar>> attemptCreate(Map<String, dynamic> formData) async {
-    toggleLoading();
-
+  Future<UserModel> attemptGet(int id) async {
     try {
-      await repository.create(formData);
-      
-      await Modular.to.pushReplacementNamed('/users');
+      user = await repository.getUser(id);
     } catch (e) {
-      if (e is FormValidationException) {
-        List<SnackBar> snackMessages = [];
-        e.errors.forEach((field, errors) {
-          errors.forEach((error) {
-            snackMessages.add(SnackBar(
-              content: Text(error),
-            ));
-          });
-        });
-
-        toggleLoading();
-        return snackMessages;
-      }
+      print(e.toString());
     }
 
     toggleLoading();
-    return [];
+    return user;
   }
 }
