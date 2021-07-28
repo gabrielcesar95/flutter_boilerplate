@@ -74,7 +74,7 @@ class _RegisterPageState
                             SizedBox(
                               height: 8,
                             ),
-                            RaisedButton(
+                            ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState.validate()) {
                                   this.controller.toggleLoading();
@@ -101,9 +101,9 @@ class _RegisterPageState
                             SizedBox(
                               height: 8,
                             ),
-                            RaisedButton(
+                            ElevatedButton(
                               onPressed: () {
-                                Modular.to.pushReplacementNamed('/login');
+                                Modular.to.navigate('/login');
                               },
                               child: Text('Já tenho uma conta'),
                             ),

@@ -25,7 +25,7 @@ abstract class _LoginControllerBase with Store {
     try {
       await _oauthService.setClient(email, password);
 
-      Modular.to.pushReplacementNamed('/home');
+      Modular.to.navigate('/home');
       return;
     } on FormValidationException catch (e) {
       List<SnackBar> snackMessages = [];

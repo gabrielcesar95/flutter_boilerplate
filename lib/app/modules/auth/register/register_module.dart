@@ -4,7 +4,7 @@ import 'package:flutter_boilerplate/app/modules/auth/register/register_controlle
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_boilerplate/app/modules/auth/register/register_page.dart';
 
-class RegisterModule extends ChildModule {
+class RegisterModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => RegisterController()),
@@ -13,9 +13,9 @@ class RegisterModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => RegisterPage()),
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => RegisterPage()),
       ];
 
-  static Inject get to => Inject<RegisterModule>.of();
+  //static Inject get to => Inject<RegisterModule>.of();
 }

@@ -5,21 +5,16 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: Modular.navigatorKey,
+      // navigatorKey: Modular.navigatorKey,
       title: 'Aplicação',
+      initialRoute: "/",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Roboto',
         textTheme: TextTheme(
-          bodyText1: TextStyle(
-            color: Colors.white
-          ),
-          bodyText2: TextStyle(
-            color: Colors.white
-          ),
-          caption: TextStyle(
-            color: Colors.white
-          ),
+          bodyText1: TextStyle(color: Colors.white),
+          bodyText2: TextStyle(color: Colors.white),
+          caption: TextStyle(color: Colors.white),
         ),
         primaryColor: Colors.grey[700],
         inputDecorationTheme: InputDecorationTheme(
@@ -34,7 +29,7 @@ class AppWidget extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      onGenerateRoute: Modular.generateRoute,
-    );
+      // onGenerateRoute: Modular.generateRoute,
+    ).modular();
   }
 }

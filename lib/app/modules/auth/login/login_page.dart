@@ -57,7 +57,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  RaisedButton(
+                                  ElevatedButton(
                                     onPressed: () async {
                                       if (_formKey.currentState.validate()) {
                                         this.controller.toggleLoading();
@@ -94,9 +94,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                             SizedBox(
                               height: 8,
                             ),
-                            RaisedButton(
+                            ElevatedButton(
                               onPressed: () {
-                                Modular.to.pushReplacementNamed('/register');
+                                Modular.to.pushNamed('/register');
                               },
                               child: Text('Criar conta'),
                             ),

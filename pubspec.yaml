@@ -9,13 +9,13 @@ dependencies:
   flutter:
     sdk: flutter
   mdi: ^1.0.1
-  dio: ^3.0.8
+  dio: ^4.0.0
   mobx: ^1.0.1
   flutter_mobx: ^1.0.1
-  flutter_modular: ^1.2.3
-  oauth2: ^1.6.0
-  hive: ^1.4.0
-  hive_flutter: ^0.3.0
+  flutter_modular: ^3.3.0
+  oauth2: ^2.0.0
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
   flutter_dotenv: ^2.1.0
 
 dev_dependencies:

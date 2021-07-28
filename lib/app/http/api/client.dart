@@ -23,14 +23,17 @@ abstract class Api {
     client = new Dio(options);
 
     client.interceptors.add(InterceptorsWrapper(
-      onRequest: (RequestOptions options) async {
+      onRequest:
+          (RequestOptions options, RequestInterceptorHandler handler) async {
         String token = await this._token;
 
         if (token != null && !options.headers.containsKey('Authorization')) {
-          options.headers = {'Authorization': 'Bearer ${await getAccessToken()}'};
+          options.headers = {
+            'Authorization': 'Bearer ${await getAccessToken()}'
+          };
         }
 
-        return options;
+        return handler.next(options);
       },
     ));
   }

@@ -38,7 +38,8 @@ class OauthService {
     if (_mobileToken == null || _mobileToken.isEmpty) {
       throw "Couldn't get user";
     } else {
-      oauth2.Client client = oauth2.Client(oauth2.Credentials.fromJson(_mobileToken));
+      oauth2.Client client =
+          oauth2.Client(oauth2.Credentials.fromJson(_mobileToken));
 
       return client;
     }

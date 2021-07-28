@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
 
   void isLoggedIn() {
     _oauthService.ensureLoggedIn().then((loggedIn) => loggedIn
-        ? Modular.to.pushReplacementNamed('/home')
-        : Modular.to.pushReplacementNamed('/login'));
+        ? Modular.to.navigate('/home')
+        : Modular.to.navigate('/login'));
   }
 }
