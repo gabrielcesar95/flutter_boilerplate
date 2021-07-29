@@ -1,5 +1,5 @@
 class FormValidationException implements Exception {
-  Map errors;
+  Map? errors;
 
   FormValidationException(dynamic responseData) {
     if (responseData['errors'] != null) {

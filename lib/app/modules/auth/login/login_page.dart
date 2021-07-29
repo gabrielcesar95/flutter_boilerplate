@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -59,7 +59,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () async {
-                                      if (_formKey.currentState.validate()) {
+                                      if (_formKey.currentState!.validate()) {
                                         this.controller.toggleLoading();
                                         final loginAttempt =
                                             await Modular.get<LoginController>()
@@ -69,7 +69,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
                                         if (loginAttempt is List<SnackBar>) {
                                           loginAttempt.forEach((error) {
-                                            _scaffoldKey.currentState
+                                            _scaffoldKey.currentState!
                                                 .showSnackBar(error);
                                           });
                                         }

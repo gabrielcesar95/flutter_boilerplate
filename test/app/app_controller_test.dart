@@ -6,7 +6,7 @@ import 'package:flutter_boilerplate/app/app_module.dart';
 
 void main() {
   initModule(AppModule());
-  AppController app;
+  AppController? app;
 
   setUp(() {
     // app = AppModule.to.get<AppController>();

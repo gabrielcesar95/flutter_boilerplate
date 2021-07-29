@@ -6,7 +6,7 @@ import 'package:flutter_boilerplate/app/modules/fuel/fuel_module.dart';
 
 void main() {
   initModule(FuelModule());
-  FuelController fuel;
+  FuelController? fuel;
 
   setUp(() {
     // fuel = FuelModule.to.bloc<FuelController>();

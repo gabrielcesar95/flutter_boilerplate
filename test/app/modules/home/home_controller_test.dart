@@ -6,7 +6,7 @@ import 'package:flutter_boilerplate/app/modules/home/home_module.dart';
 
 void main() {
   initModule(HomeModule());
-  HomeController home;
+  HomeController? home;
 
   setUp(() {
     // home = HomeModule.to.get<HomeController>();

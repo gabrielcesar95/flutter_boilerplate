@@ -32,7 +32,7 @@ abstract class _RegisterControllerBase with Store {
       return;
     } on FormValidationException catch (e) {
       List<SnackBar> snackMessages = [];
-      e.errors.forEach((field, errors) {
+      e.errors?.forEach((field, errors) {
         errors.forEach((error) {
           snackMessages.add(SnackBar(
             content: Text(error),
