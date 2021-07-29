@@ -36,8 +36,6 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void isLoggedIn() {
-    dynamic a = OauthService();
-
     _oauthService.ensureLoggedIn().then((loggedIn) => loggedIn
         ? Modular.to.navigate('/home')
         : Modular.to.navigate('/login'));
