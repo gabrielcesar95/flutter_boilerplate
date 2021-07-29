@@ -11,7 +11,7 @@ abstract class Api {
   Future<String> _token = OauthService().getMobileToken();
 
   BaseOptions options = BaseOptions(
-    baseUrl: DotEnv().env['APP_URL'],
+    baseUrl: dotenv.env['APP_URL'],
     connectTimeout: 8000,
     receiveTimeout: 5000,
     headers: {

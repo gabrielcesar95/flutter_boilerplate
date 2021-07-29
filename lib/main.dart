@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
-  await DotEnv().load('.env');
+  await dotenv.load(fileName: ".env");
   await Hive.initFlutter();
 
   runApp(ModularApp(
