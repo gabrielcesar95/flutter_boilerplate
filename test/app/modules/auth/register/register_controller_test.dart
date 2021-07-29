@@ -1,7 +1,6 @@
-import 'package:flutter_modular/flutter_modular_test.dart';
+import 'package:flutter_modular_test/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_boilerplate/app/modules/auth/register/register_controller.dart';
 import 'package:flutter_boilerplate/app/modules/auth/register/register_module.dart';
 
 void main() {
