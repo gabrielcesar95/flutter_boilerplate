@@ -9,7 +9,7 @@ class HomeController = _HomeBase with _$HomeController;
 abstract class _HomeBase with Store {
   final _oauthService = OauthService();
 
-  attemptLogout() async {
+  void attemptLogout() async {
     try {
       await _oauthService.logout();
     } catch (error) {

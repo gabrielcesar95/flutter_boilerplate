@@ -54,15 +54,15 @@ class OauthService {
       await _setMobileToken(client.credentials);
     } catch (e) {
       Map responseData = {
-        "errors": {
-          "auth": ["Falha no login"]
+        'errors': {
+          'auth': ['Falha no login']
         }
       };
 
       if (e is oauth2.AuthorizationException) {
         responseData = {
-          "errors": {
-            "auth": ["Usuário/senha incorretos"]
+          'errors': {
+            'auth': ['Usuário/senha incorretos']
           }
         };
       }
@@ -89,7 +89,7 @@ class OauthService {
   Future<void> logout() async {
     if (await ensureLoggedIn()) {
       final Box box = await _box;
-      box.delete('token');
+      await box.delete('token');
     }
   }
 }

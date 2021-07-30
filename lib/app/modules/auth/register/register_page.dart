@@ -18,9 +18,9 @@ class _RegisterPageState
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _RegisterPageState
       key: _scaffoldKey,
       body: SafeArea(
         child: Observer(
-          builder: (_) => this.controller.loading == true
+          builder: (_) => controller.pageLoading == true
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -79,8 +79,7 @@ class _RegisterPageState
                                 if (_formKey.currentState!.validate()) {
                                   this.controller.toggleLoading();
                                   final registerAttempt =
-                                      await Modular.get<RegisterController>()
-                                          .attemptRegister(
+                                      await controller.attemptRegister(
                                     _nameController.text,
                                     _emailController.text,
                                     _passwordController.text,
@@ -92,7 +91,6 @@ class _RegisterPageState
                                           .showSnackBar(error);
                                     });
                                   }
-                                  this.controller.toggleLoading();
                                 }
                               },
                               child: Text('Cadastrar'),

@@ -8,19 +8,19 @@ abstract class Api {
   late Dio client;
   String path = '';
 
-  Future<String> _token = OauthService().getMobileToken();
+  final Future<String> _token = OauthService().getMobileToken();
 
   BaseOptions options = BaseOptions(
     baseUrl: dotenv.env['APP_URL'] ?? '',
     connectTimeout: 8000,
     receiveTimeout: 5000,
     headers: {
-      'Accept': 'application/json',
+      'accept': 'application/json',
     },
   );
 
   Api() {
-    client = new Dio(options);
+    client = Dio(options);
 
     client.interceptors.add(InterceptorsWrapper(
       onRequest:
@@ -38,8 +38,8 @@ abstract class Api {
     ));
   }
 
-  getAccessToken() async {
-    Map credentials = jsonDecode(await this._token);
+  Future<String> getAccessToken() async {
+    Map credentials = jsonDecode(await _token);
 
     return credentials['accessToken'];
   }

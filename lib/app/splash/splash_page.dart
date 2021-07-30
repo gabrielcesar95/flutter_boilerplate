@@ -11,7 +11,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  OauthService _oauthService = OauthService();
+  final OauthService _oauthService = OauthService();
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
         Container(
           width: 150,
           height: 150,
-          child: Image.asset("assets/img/logo.png"),
+          child: Image.asset('assets/img/logo.png'),
         )
       ],
     );

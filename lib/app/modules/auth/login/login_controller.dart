@@ -16,10 +16,10 @@ abstract class _LoginControllerBase with Store {
 
   @action
   void toggleLoading() {
-    this.loading = !this.loading;
+    loading = !loading;
   }
 
-  attemptLogin(String email, String password) async {
+  Future<List<SnackBar>> attemptLogin(String email, String password) async {
     try {
       await _oauthService.setClient(email, password);
 
@@ -33,9 +33,10 @@ abstract class _LoginControllerBase with Store {
             content: Text(error),
           ));
         });
-      });
 
-      return snackMessages;
+        return snackMessages;
+      }
     }
+    return [];
   }
 }

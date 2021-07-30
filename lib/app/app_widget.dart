@@ -23,6 +23,12 @@ class AppWidget extends StatelessWidget {
         appBarTheme: AppBarTheme(
           color: Colors.grey[800],
         ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey[800],
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey[800],
+        ),
         accentColor: Colors.deepPurpleAccent[900],
         canvasColor: Colors.grey[50],
         iconTheme: IconThemeData(
