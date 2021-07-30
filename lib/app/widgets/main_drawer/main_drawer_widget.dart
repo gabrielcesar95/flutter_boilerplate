@@ -1,7 +1,6 @@
 import 'package:flutter_boilerplate/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mdi/mdi.dart';
 
 class MainDrawerWidget extends StatelessWidget {
   @override
@@ -41,16 +40,14 @@ class MainDrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Mdi.accountEdit),
+            leading: Icon(Icons.person),
             title: Text(
               'Editar Perfil',
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            onTap: () async {
-              
-            },
+            onTap: () async {},
           ),
           ListTile(
             leading: Icon(Icons.power_settings_new),

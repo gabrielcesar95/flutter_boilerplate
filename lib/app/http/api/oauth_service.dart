@@ -1,17 +1,16 @@
 import 'package:flutter_boilerplate/app/exceptions/form_validation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
-import 'dart:convert';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
 class OauthService {
   static final OauthService _singleton = OauthService._internal();
 
   Future<Box> _box = Hive.openBox('oauth');
-  static final String _url = DotEnv().env['APP_URL'];
+  static final String? _url = dotenv.env['APP_URL'];
   static final String _endpoint = "oauth/token";
-  static final String _clientId = DotEnv().env['APP_CLIENT_ID'];
-  static final String _clientSecret = DotEnv().env['APP_CLIENT_SECRET'];
+  static final String? _clientId = dotenv.env['APP_CLIENT_ID'];
+  static final String? _clientSecret = dotenv.env['APP_CLIENT_SECRET'];
 
   factory OauthService() {
     return _singleton;
@@ -21,26 +20,26 @@ class OauthService {
 
   final authorizationEndpoint = Uri.parse('$_url$_endpoint');
 
-  Future<String> _getMobileToken() async {
+  Future<String> getMobileToken() async {
     final Box box = await _box;
 
     return box.get('token');
   }
 
-  Future<void> _setMobileToken(String token) async {
+  Future<void> _setMobileToken(oauth2.Credentials credentials) async {
     final Box box = await _box;
 
-    return box.put('token', token);
+    return box.put('token', credentials.toJson());
   }
 
   Future getClient() async {
-    var _mobileToken = await _getMobileToken();
+    var _mobileToken = await getMobileToken();
 
-    if (_mobileToken == null || _mobileToken.isEmpty) {
+    if (_mobileToken.isEmpty) {
       throw "Couldn't get user";
     } else {
       oauth2.Client client =
-          oauth2.Client(oauth2.Credentials.fromJson(jsonDecode(_mobileToken)));
+          oauth2.Client(oauth2.Credentials.fromJson(_mobileToken));
 
       return client;
     }
@@ -52,7 +51,7 @@ class OauthService {
           authorizationEndpoint, username, password,
           identifier: _clientId, secret: _clientSecret);
 
-      await _setMobileToken(jsonEncode(client.credentials.toJson()));
+      await _setMobileToken(client.credentials);
     } catch (e) {
       Map responseData = {
         "errors": {
@@ -73,7 +72,7 @@ class OauthService {
   }
 
   void closeClient(client) async {
-    await _setMobileToken(jsonEncode(client.credentials.toJson()));
+    await _setMobileToken(client.credentials);
 
     client.close();
   }

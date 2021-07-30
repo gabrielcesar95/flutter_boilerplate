@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashPage extends StatefulWidget {
   final String title;
-  const SplashPage({Key key, this.title = "SplashScreen"}) : super(key: key);
+  const SplashPage({Key? key, this.title = "SplashScreen"}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -16,8 +16,6 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-
-    print('SplashScreen -> initState()');
 
     isLoggedIn();
   }
@@ -39,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
 
   void isLoggedIn() {
     _oauthService.ensureLoggedIn().then((loggedIn) => loggedIn
-        ? Modular.to.pushReplacementNamed('/home')
-        : Modular.to.pushReplacementNamed('/login'));
+        ? Modular.to.navigate('/home')
+        : Modular.to.navigate('/login'));
   }
 }

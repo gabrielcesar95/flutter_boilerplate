@@ -1,7 +1,6 @@
-import 'package:flutter_modular/flutter_modular_test.dart';
+import 'package:flutter_modular_test/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_boilerplate/app/widgets/main_drawer/main_drawer_controller.dart';
 import 'package:flutter_boilerplate/app/app_module.dart';
 
 void main() {

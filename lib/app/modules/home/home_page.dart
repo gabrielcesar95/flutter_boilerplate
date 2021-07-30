@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   final String title;
 
-  const HomePage({Key key, this.title = "Home Page"}) : super(key: key);
+  const HomePage({Key? key, this.title = "Home Page"}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,9 +22,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text('Teste')
-            ]),
+            children: <Widget>[Text('Teste')]),
         padding: const EdgeInsets.all(0.0),
         alignment: Alignment.center,
       ),

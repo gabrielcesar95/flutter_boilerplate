@@ -1,5 +1,4 @@
 import 'package:flutter_boilerplate/app/exceptions/form_validation.dart';
-import 'package:flutter_boilerplate/app/http/api/auth_repository.dart';
 import 'package:flutter_boilerplate/app/http/api/oauth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,7 +10,6 @@ class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
   final OauthService _oauthService = Modular.get<OauthService>();
-  final AuthRepository _repo = Modular.get<AuthRepository>();
 
   @observable
   bool loading = false;
@@ -25,11 +23,11 @@ abstract class _LoginControllerBase with Store {
     try {
       await _oauthService.setClient(email, password);
 
-      Modular.to.pushReplacementNamed('/home');
+      Modular.to.navigate('/home');
       return;
     } on FormValidationException catch (e) {
       List<SnackBar> snackMessages = [];
-      e.errors.forEach((field, errors) {
+      e.errors?.forEach((field, errors) {
         errors.forEach((error) {
           snackMessages.add(SnackBar(
             content: Text(error),

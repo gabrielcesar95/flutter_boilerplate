@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'register_controller.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key key}) : super(key: key);
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -74,9 +74,9 @@ class _RegisterPageState
                             SizedBox(
                               height: 8,
                             ),
-                            RaisedButton(
+                            ElevatedButton(
                               onPressed: () async {
-                                if (_formKey.currentState.validate()) {
+                                if (_formKey.currentState!.validate()) {
                                   this.controller.toggleLoading();
                                   final registerAttempt =
                                       await Modular.get<RegisterController>()
@@ -88,7 +88,7 @@ class _RegisterPageState
 
                                   if (registerAttempt is List<SnackBar>) {
                                     registerAttempt.forEach((error) {
-                                      _scaffoldKey.currentState
+                                      _scaffoldKey.currentState!
                                           .showSnackBar(error);
                                     });
                                   }
@@ -101,9 +101,9 @@ class _RegisterPageState
                             SizedBox(
                               height: 8,
                             ),
-                            RaisedButton(
+                            ElevatedButton(
                               onPressed: () {
-                                Modular.to.pushReplacementNamed('/login');
+                                Modular.to.navigate('/login');
                               },
                               child: Text('Já tenho uma conta'),
                             ),

@@ -7,7 +7,6 @@ part 'home_controller.g.dart';
 class HomeController = _HomeBase with _$HomeController;
 
 abstract class _HomeBase with Store {
-  
   final _oauthService = OauthService();
 
   attemptLogout() async {
@@ -17,6 +16,6 @@ abstract class _HomeBase with Store {
       print(error.toString());
     }
 
-    Modular.to.pushReplacementNamed('/login');
+    Modular.to.navigate('/login');
   }
 }

@@ -9,10 +9,10 @@ part 'register_controller.g.dart';
 
 class RegisterController = _RegisterControllerBase with _$RegisterController;
 
-abstract class _RegisterControllerBase with Store {  
+abstract class _RegisterControllerBase with Store {
   final OauthService _oauthService = Modular.get<OauthService>();
   final AuthRepository _repo = Modular.get<AuthRepository>();
-  
+
   @observable
   bool loading = false;
 
@@ -23,21 +23,23 @@ abstract class _RegisterControllerBase with Store {
 
   attemptRegister(String name, String email, String password) async {
     try {
-      await _repo.register({'name': name, 'email': email, 'password': password});
+      await _repo
+          .register({'name': name, 'email': email, 'password': password});
 
       await _oauthService.setClient(email, password);
 
-      Modular.to.pushReplacementNamed('/home');
+      Modular.to.navigate('/home');
       return;
     } on FormValidationException catch (e) {
-      
       List<SnackBar> snackMessages = [];
-      e.errors.forEach((field, errors){
-        errors.forEach((error){
-          snackMessages.add(SnackBar(content: Text(error),));
+      e.errors?.forEach((field, errors) {
+        errors.forEach((error) {
+          snackMessages.add(SnackBar(
+            content: Text(error),
+          ));
         });
       });
-      
+
       return snackMessages;
     }
   }

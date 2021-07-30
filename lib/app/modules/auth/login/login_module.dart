@@ -4,7 +4,7 @@ import 'package:flutter_boilerplate/app/modules/auth/login/login_controller.dart
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_boilerplate/app/modules/auth/login/login_page.dart';
 
-class LoginModule extends ChildModule {
+class LoginModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => LoginController()),
@@ -13,9 +13,9 @@ class LoginModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => LoginPage()),
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => LoginPage()),
       ];
 
-  static Inject get to => Inject<LoginModule>.of();
+  // static Inject get to => Inject<LoginModule>.of();
 }
