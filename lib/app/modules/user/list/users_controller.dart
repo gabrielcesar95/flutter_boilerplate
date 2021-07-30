@@ -18,7 +18,7 @@ abstract class _UserControllerBase with Store {
   @observable
   int currentPage = 1;
   @observable
-  ObservableFuture<List<UserModel>> users;
+  ObservableFuture<List<UserModel>>? users;
 
   @action
   void toggleLoading() {

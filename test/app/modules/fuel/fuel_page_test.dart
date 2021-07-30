@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_boilerplate/app/modules/fuel/fuel_page.dart';
 
-main() {
+void main() {
   testWidgets('FuelPage has title', (WidgetTester tester) async {
     await tester.pumpWidget(buildTestableWidget(FuelPage(title: 'Fuel')));
     final titleFinder = find.text('Fuel');

@@ -9,7 +9,7 @@ import 'user_view_controller.dart';
 class UserViewPage extends StatefulWidget {
   final int id;
 
-  const UserViewPage({Key key, this.id}) : super(key: key);
+  const UserViewPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _UserViewPageState createState() => _UserViewPageState();
@@ -25,7 +25,7 @@ class _UserViewPageState
     controller.attemptGet(widget.id);
 
     return Observer(
-      builder: (_) => controller.pageLoading == null
+      builder: (_) => !controller.pageLoading
           ? Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
@@ -89,18 +89,17 @@ class _UserViewPageState
                           SizedBox(
                             height: 8,
                           ),
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                Map<String, dynamic> formData = {
-                                  'name': controller.nameController.text,
-                                  'email': controller.emailController.text,
-                                  'password':
-                                      controller.passwordController.text,
-                                  'active': controller.active
-                                };
-
-                                
+                              // TODO: check this button
+                              if (_formKey.currentState!.validate()) {
+                                // Map<String, dynamic> formData = {
+                                //   'name': controller.nameController.text,
+                                //   'email': controller.emailController.text,
+                                //   'password':
+                                //       controller.passwordController.text,
+                                //   'active': controller.active
+                                // };
                               }
                             },
                             child: Text('Salvar'),

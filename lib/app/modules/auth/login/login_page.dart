@@ -60,7 +60,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                   ElevatedButton(
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
-                                        this.controller.toggleLoading();
+                                        controller.toggleLoading();
                                         final loginAttempt =
                                             await Modular.get<LoginController>()
                                                 .attemptLogin(

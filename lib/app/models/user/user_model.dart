@@ -1,28 +1,28 @@
 class UserModel {
-  int id;
-  String name;
-  String email;
-  String avatar;
-  bool active;
-  DateTime emailVerifiedAt;
-  DateTime createdAt;
-  DateTime updatedAt;
+  late int id;
+  late String name;
+  late String email;
+  late String? avatar;
+  late bool active;
+  late DateTime? emailVerifiedAt;
+  late DateTime? createdAt;
+  late DateTime? updatedAt;
 
   set email_verified_at(String dateTime) {
     if (dateTime is String) {
-      emailVerifiedAt = DateTime.tryParse(dateTime);
+      emailVerifiedAt = DateTime.tryParse(dateTime)!;
     }
   }
 
   set created_at(String dateTime) {
     if (dateTime is String) {
-      createdAt = DateTime.tryParse(dateTime);
+      createdAt = DateTime.tryParse(dateTime)!;
     }
   }
 
   set updated_at(String dateTime) {
     if (dateTime is String) {
-      updatedAt = DateTime.tryParse(dateTime);
+      updatedAt = DateTime.tryParse(dateTime)!;
     }
   }
 

@@ -31,9 +31,9 @@ abstract class _RegisterControllerBase with Store {
       await _oauthService.setClient(email, password);
 
       Modular.to.navigate('/home');
-      return;
     } on FormValidationException catch (e) {
       List<SnackBar> snackMessages = [];
+
       e.errors?.forEach((field, errors) {
         errors.forEach((error) {
           snackMessages.add(SnackBar(
@@ -44,6 +44,7 @@ abstract class _RegisterControllerBase with Store {
 
       return snackMessages;
     }
+
     toggleLoading();
     return [];
   }

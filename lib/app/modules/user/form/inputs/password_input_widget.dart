@@ -15,7 +15,7 @@ class _PasswordInputWidgetState extends State<PasswordInputWidget> {
       controller: widget.controller,
       obscureText: true,
       validator: (val) {
-        if (val.isEmpty) {
+        if (val == null || val.isEmpty) {
           return 'Insira a senha';
         }
         if (val.length < 8) {

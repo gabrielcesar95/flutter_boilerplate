@@ -58,7 +58,7 @@ class MainDrawerWidget extends StatelessWidget {
               ),
             ),
             onTap: () async {
-              await Modular.get<HomeController>().attemptLogout();
+              Modular.get<HomeController>().attemptLogout();
             },
           )
         ],

@@ -11,7 +11,7 @@ class AuthRepository extends Api implements Disposable {
       return response.data;
     } on DioError catch (e) {
       if (e.response == null) {
-        throw Exception("Falha ao conectar");
+        throw Exception('Falha ao conectar');
       }
 
       if (e.response?.statusCode == 422) {

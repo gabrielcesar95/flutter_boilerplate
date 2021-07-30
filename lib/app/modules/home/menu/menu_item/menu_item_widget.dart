@@ -10,8 +10,11 @@ class MenuItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 112,
+      width: 112,
       child: Card(
         color: Theme.of(context).primaryColor,
+        margin: EdgeInsets.all(8),
         child: InkWell(
           onTap: () {
             Navigator.pushNamed(context, _router);
@@ -29,16 +32,12 @@ class MenuItemWidget extends StatelessWidget {
                 child: Text(
                   _text,
                   textAlign: TextAlign.center,
-                  
                 ),
               )
             ],
           ),
         ),
-        margin: EdgeInsets.all(8),
       ),
-      height: 112,
-      width: 112,
     );
   }
 }

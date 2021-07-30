@@ -9,7 +9,7 @@ import 'package:flutter_boilerplate/app/modules/user/view/user_view_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'list/users_page.dart';
 
-class UserModule extends ChildModule {
+class UserModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => UserViewController(i.get())),
@@ -19,12 +19,14 @@ class UserModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => UserPage()),
-        ModularRouter('/new', child: (_, args) => UserFormPage()),
-        ModularRouter('/:id', child: (_, args) => UserViewPage(id: int.tryParse(args.params['id']))),
-        ModularRouter('/edit/:id', child: (_, args) => UserFormPage(id: args.params['id'])),
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => UserPage()),
+        ChildRoute('/new', child: (_, args) => UserFormPage()),
+        ChildRoute('/:id',
+            child: (_, args) => UserViewPage(id: args.params['id'])),
+        ChildRoute('/edit/:id',
+            child: (_, args) => UserFormPage(id: args.params['id'])),
       ];
 
-  static Inject get to => Inject<UserModule>.of();
+  // static Inject get to => Inject<UserModule>.of();
 }

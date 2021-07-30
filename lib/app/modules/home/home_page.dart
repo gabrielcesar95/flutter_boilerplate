@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   final String title;
 
-  const HomePage({Key? key, this.title = "Home Page"}) : super(key: key);
+  const HomePage({Key? key, this.title = 'Home Page'}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -19,6 +19,8 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body: Container(
+        padding: const EdgeInsets.all(0.0),
+        alignment: Alignment.center,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -26,8 +28,6 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               MenuWidget(),
             ]),
-        padding: const EdgeInsets.all(0.0),
-        alignment: Alignment.center,
       ),
       endDrawer: MainDrawerWidget(),
     );

@@ -77,7 +77,7 @@ class _RegisterPageState
                             ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  this.controller.toggleLoading();
+                                  controller.toggleLoading();
                                   final registerAttempt =
                                       await controller.attemptRegister(
                                     _nameController.text,

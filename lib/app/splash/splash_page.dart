@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashPage extends StatefulWidget {
   final String title;
-  const SplashPage({Key? key, this.title = "SplashScreen"}) : super(key: key);
+  const SplashPage({Key? key, this.title = 'SplashScreen'}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();

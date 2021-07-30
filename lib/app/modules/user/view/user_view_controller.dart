@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app/exceptions/form_validation.dart';
 import 'package:flutter_boilerplate/app/http/api/user_repository.dart';
 import 'package:flutter_boilerplate/app/models/user/user_model.dart';
 import 'package:mobx/mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 part 'user_view_controller.g.dart';
 
@@ -31,7 +29,7 @@ abstract class _UserViewControllerBase with Store {
   bool emailVerified = false;
 
   // User
-  UserModel user;
+  UserModel? user;
 
   @action
   void toggleLoading() {
@@ -44,14 +42,13 @@ abstract class _UserViewControllerBase with Store {
     active = !active;
   }
 
-  Future<UserModel> attemptGet(int id) async {
+  void attemptGet(int id) async {
     try {
       user = await repository.getUser(id);
     } catch (e) {
-      print(e.toString());
+      throw Exception('Falha ao obter usuário');
     }
 
     toggleLoading();
-    return user;
   }
 }

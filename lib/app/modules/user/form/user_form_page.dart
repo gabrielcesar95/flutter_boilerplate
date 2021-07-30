@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'user_form_controller.dart';
 
 class UserFormPage extends StatefulWidget {
-  const UserFormPage({Key key, id}) : super(key: key);
+  const UserFormPage({Key? key, id}) : super(key: key);
 
   @override
   _UserFormPageState createState() => _UserFormPageState();
@@ -84,9 +84,9 @@ class _UserFormPageState
                             SizedBox(
                               height: 8,
                             ),
-                            RaisedButton(
+                            ElevatedButton(
                               onPressed: () async {
-                                if (_formKey.currentState.validate()) {
+                                if (_formKey.currentState!.validate()) {
                                   Map<String, dynamic> formData = {
                                     'name': controller.nameController.text,
                                     'email': controller.emailController.text,
@@ -100,7 +100,7 @@ class _UserFormPageState
 
                                   if (createAttempt is List<SnackBar>) {
                                     createAttempt.forEach((error) {
-                                      _scaffoldKey.currentState
+                                      _scaffoldKey.currentState!
                                           .showSnackBar(error);
                                     });
                                   }

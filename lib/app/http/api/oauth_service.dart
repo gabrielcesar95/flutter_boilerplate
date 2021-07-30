@@ -6,9 +6,9 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 class OauthService {
   static final OauthService _singleton = OauthService._internal();
 
-  Future<Box> _box = Hive.openBox('oauth');
+  final Future<Box> _box = Hive.openBox('oauth');
   static final String? _url = dotenv.env['APP_URL'];
-  static final String _endpoint = "oauth/token";
+  static final String _endpoint = 'oauth/token';
   static final String? _clientId = dotenv.env['APP_CLIENT_ID'];
   static final String? _clientSecret = dotenv.env['APP_CLIENT_SECRET'];
 

@@ -42,13 +42,13 @@ mixin _$UsersController on _UserControllerBase, Store {
   final _$usersAtom = Atom(name: '_UserControllerBase.users');
 
   @override
-  ObservableFuture<List<UserModel>> get users {
+  ObservableFuture<List<UserModel>>? get users {
     _$usersAtom.reportRead();
     return super.users;
   }
 
   @override
-  set users(ObservableFuture<List<UserModel>> value) {
+  set users(ObservableFuture<List<UserModel>>? value) {
     _$usersAtom.reportWrite(value, super.users, () {
       super.users = value;
     });

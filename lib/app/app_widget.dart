@@ -7,7 +7,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       // navigatorKey: Modular.navigatorKey,
       title: 'Aplicação',
-      initialRoute: "/",
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Roboto',

@@ -25,7 +25,7 @@ abstract class Api {
     client.interceptors.add(InterceptorsWrapper(
       onRequest:
           (RequestOptions options, RequestInterceptorHandler handler) async {
-        String token = await this._token;
+        String token = await _token;
 
         if (token.isNotEmpty && !options.headers.containsKey('Authorization')) {
           options.headers = {

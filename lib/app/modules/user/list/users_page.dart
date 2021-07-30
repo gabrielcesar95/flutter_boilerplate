@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 class UserPage extends StatefulWidget {
-  const UserPage({Key key}) : super(key: key);
+  const UserPage({Key? key}) : super(key: key);
 
   @override
   _UserPageState createState() => _UserPageState();
@@ -16,13 +16,12 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends ModularState<UserPage, UsersController> {
   List<UserModel> users = [];
 
-  ScrollController _scrollController;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     controller.fetchUsers();
 
-    _scrollController = ScrollController();
     _scrollController.addListener(() {
       final maxPosition = _scrollController.position.maxScrollExtent;
       final currentPosition = _scrollController.position.pixels;
@@ -59,7 +58,8 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
                 ),
               );
             } else {
-              users = controller.users.value;
+              //TODO: fix this
+              // users = controller.users.value;
             }
 
             if (users.isEmpty) {
@@ -68,7 +68,7 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
               );
             }
 
-            if (controller.users.error != null) {
+            if (!controller.users?.error) {
               return Center(
                 child: Text('Erro ao obter usuários'),
               );
@@ -89,10 +89,10 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
         onPressed: () {
-          Modular.link.pushNamed('/new');
+          Modular.to.pushNamed('/new');
         },
+        child: Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -105,7 +105,7 @@ class _UserPageState extends ModularState<UserPage, UsersController> {
 
   @override
   void dispose() {
-    if (users != null && users.isNotEmpty) {
+    if (users.isNotEmpty) {
       users.clear();
     }
     super.dispose();
@@ -126,10 +126,10 @@ class ListItem extends StatelessWidget {
           ),
         ),
         trailing: InkWell(
-          child: Icon(Icons.edit),
           onTap: () {
             print('edit');
           },
+          child: Icon(Icons.edit),
         ),
         onTap: () async {
           await Modular.to.pushReplacementNamed('/users/${item.id}');

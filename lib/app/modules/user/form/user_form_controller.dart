@@ -47,12 +47,12 @@ abstract class _UserFormControllerBase with Store {
 
     try {
       await repository.create(formData);
-      
+
       await Modular.to.pushReplacementNamed('/users');
     } catch (e) {
       if (e is FormValidationException) {
         List<SnackBar> snackMessages = [];
-        e.errors.forEach((field, errors) {
+        e.errors?.forEach((field, errors) {
           errors.forEach((error) {
             snackMessages.add(SnackBar(
               content: Text(error),
