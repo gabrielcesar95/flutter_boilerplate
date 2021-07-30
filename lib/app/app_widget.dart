@@ -7,7 +7,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       // navigatorKey: Modular.navigatorKey,
       title: 'Aplicação',
-      initialRoute: "/",
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Roboto',
@@ -21,6 +21,12 @@ class AppWidget extends StatelessWidget {
           fillColor: Colors.deepPurpleAccent[500],
         ),
         appBarTheme: AppBarTheme(
+          color: Colors.grey[800],
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey[800],
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
           color: Colors.grey[800],
         ),
         accentColor: Colors.deepPurpleAccent[900],

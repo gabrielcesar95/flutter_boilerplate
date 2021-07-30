@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class FuelPage extends StatefulWidget {
   final String title;
-  const FuelPage({Key? key, this.title = "Consumo de Combustível"})
+  const FuelPage({Key? key, this.title = 'Consumo de Combustível'})
       : super(key: key);
 
   @override

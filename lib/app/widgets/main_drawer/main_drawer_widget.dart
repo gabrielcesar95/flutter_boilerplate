@@ -27,7 +27,7 @@ class MainDrawerWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Gabriel",
+                      '[Nome do usuário]',
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -58,7 +58,7 @@ class MainDrawerWidget extends StatelessWidget {
               ),
             ),
             onTap: () async {
-              await Modular.get<HomeController>().attemptLogout();
+              Modular.get<HomeController>().attemptLogout();
             },
           )
         ],

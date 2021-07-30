@@ -9,18 +9,18 @@ part of 'register_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterControllerBase, Store {
-  final _$loadingAtom = Atom(name: '_RegisterControllerBase.loading');
+  final _$pageLoadingAtom = Atom(name: '_RegisterControllerBase.pageLoading');
 
   @override
-  bool get loading {
-    _$loadingAtom.reportRead();
-    return super.loading;
+  bool get pageLoading {
+    _$pageLoadingAtom.reportRead();
+    return super.pageLoading;
   }
 
   @override
-  set loading(bool value) {
-    _$loadingAtom.reportWrite(value, super.loading, () {
-      super.loading = value;
+  set pageLoading(bool value) {
+    _$pageLoadingAtom.reportWrite(value, super.pageLoading, () {
+      super.pageLoading = value;
     });
   }
 
@@ -41,7 +41,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   @override
   String toString() {
     return '''
-loading: ${loading}
+pageLoading: ${pageLoading}
     ''';
   }
 }

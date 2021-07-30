@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Flutter-Launch-All",
+        "dependsOn": [
+          "Flutter-Launch-iOS",
+          "Flutter-Launch-Emulator",
+          "Flutter-Launch-Android",
+          "Flutter-Launch-Web"
+        ]
+      },
+      {
+        "label": "Flutter-Launch-Emulator",
+        "type": "shell",
+        "command": "flutter run -d 'AOSP on IA Emulator' "
+      },
+      {
+        "label": "Flutter-Launch-Android",
+        "type": "shell",
+        "command": "flutter run -d 'Moto Z3 Play' "
+      },
+      {
+        "label": "Flutter-Launch-Web",
+        "type": "shell",
+        "command": "flutter run -d 'Chrome' "
+      }
+    ]
+  }

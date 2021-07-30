@@ -14,14 +14,16 @@ abstract class _RegisterControllerBase with Store {
   final AuthRepository _repo = Modular.get<AuthRepository>();
 
   @observable
-  bool loading = false;
+  bool pageLoading = false;
 
   @action
   void toggleLoading() {
-    this.loading = !this.loading;
+    pageLoading = !pageLoading;
   }
 
-  attemptRegister(String name, String email, String password) async {
+  Future<List<SnackBar>> attemptRegister(
+      String name, String email, String password) async {
+    toggleLoading();
     try {
       await _repo
           .register({'name': name, 'email': email, 'password': password});
@@ -29,9 +31,9 @@ abstract class _RegisterControllerBase with Store {
       await _oauthService.setClient(email, password);
 
       Modular.to.navigate('/home');
-      return;
     } on FormValidationException catch (e) {
       List<SnackBar> snackMessages = [];
+
       e.errors?.forEach((field, errors) {
         errors.forEach((error) {
           snackMessages.add(SnackBar(
@@ -42,5 +44,8 @@ abstract class _RegisterControllerBase with Store {
 
       return snackMessages;
     }
+
+    toggleLoading();
+    return [];
   }
 }

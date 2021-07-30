@@ -16,17 +16,17 @@ abstract class _LoginControllerBase with Store {
 
   @action
   void toggleLoading() {
-    this.loading = !this.loading;
+    loading = !loading;
   }
 
-  attemptLogin(String email, String password) async {
+  Future<List<SnackBar>> attemptLogin(String email, String password) async {
     try {
       await _oauthService.setClient(email, password);
 
       Modular.to.navigate('/home');
-      return;
     } on FormValidationException catch (e) {
       List<SnackBar> snackMessages = [];
+
       e.errors?.forEach((field, errors) {
         errors.forEach((error) {
           snackMessages.add(SnackBar(
@@ -37,5 +37,7 @@ abstract class _LoginControllerBase with Store {
 
       return snackMessages;
     }
+
+    return [];
   }
 }

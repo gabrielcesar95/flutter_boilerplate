@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter-All",
+            "preLaunchTask": "Flutter-Launch-All",
+            "type": "dart",
+        },
+        {
+            "name": "Flutter-Emulator",
+            "preLaunchTask": "Flutter-Launch-Emulator",
+            "type": "dart",
+        },
+        {
+            "name": "Flutter-Android",
+            "preLaunchTask": "Flutter-Launch-Android",
+            "type": "dart",
+        },
+        {
+            "name": "Flutter-Web",
+            "preLaunchTask": "Flutter-Launch-Web",
+            "type": "dart",
+        }
+    ],
+}
